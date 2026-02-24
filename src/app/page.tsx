@@ -1,64 +1,199 @@
 import Image from "next/image";
+import Link from "next/link";
+import SeminarCard from "@/components/SeminarCard";
+import ScrollCue from "@/components/ScrollCue";
+import Reveal from "@/components/Reveal";
+import ContactForm from "@/components/ContactForm";
 
-export default function Home() {
+type Seminar = {
+  slug: string;
+  title: string;
+  location: string;
+  imageSrc: string;
+  priceEUR?: number;
+  priceNIS?: number;
+};
+
+const seminars: Seminar[] = [
+  {
+    slug: "seminar-1",
+    title: "Leadership et management des équipes soignantes",
+    location: "New York, États Unis",
+    imageSrc: "/newyork.jpg",
+    priceEUR: 350,
+  },
+  {
+    slug: "seminar-2",
+    title: "Éthique et responsabilité dans les décisions médicales",
+    location: "Tel Aviv, Israel",
+    imageSrc: "/telaviv.jpg",
+    priceEUR: 350,
+  },
+  {
+    slug: "seminar-3",
+    title: "Créer et développer un cabinet médical moderne",
+    location: "Miami, États Unis",
+    imageSrc: "/miami.jpg",
+    priceEUR: 350,
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-[#e7e2d8] text-slate-700">
+      <main className="w-full pt-[80px]">
+        {/* HERO */}
+        <section className="w-full pt-5 pb-10">
+          <div className="mx-auto w-full max-w-[1050px] px-6">
+            <div className="relative overflow-hidden rounded-sm border border-black/10">
+              <div className="relative h-[560px] md:h-[560px] lg:h-[580px] w-full">
+                <Image
+                  src="/hero.jpg"
+                  alt="Destination"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-[#e7e2d8]" />
+                <div className="absolute inset-0 bg-black/50" />
+
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+                  <h1 className="text-3xl font-light tracking-wide text-white md:text-4xl">
+                    Voyagez, Apprenez, Rencontrez:
+                    <br />
+                    Votre séjour devient formateur !
+                  </h1>
+
+                  <div className="mt-6">
+                    <Link
+                      href="/seminars"
+                      className="inline-flex items-center justify-center border border-white bg-white/10 px-10 py-3 text-sm font-light tracking-[0.15em] text-white backdrop-blur-sm transition hover:bg-white/20"
+                    >
+                      NOS DESTINATIONS
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SCROLL CUE HERO -> ABOUT */}
+        <div className="w-full flex justify-center">
+          <ScrollCue targetId="about" hideAfterPx={50} fadeOnScroll />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        {/* ABOUT */}
+        <section id="about" className="w-full scroll-mt-24 pt-0">
+          <Reveal>
+          <div className="grid w-full gap-12 px-20 pt-10 md:grid-cols-2 md:items-center">
+            <div className="order-2 md:order-1">
+              <h2 className="text-4xl font-light tracking-wide md:text-4xl text-slate-700">
+                À Propos de GLI International
+              </h2>
+
+              <div className="mt-6 space-y-6 text-[17px] leading-relaxed text-[#1b2233]/80">
+                <p>
+                  <span className="font-medium text-[#1b2233]">GLI International</span>{" "}
+                  organise des séminaires d&apos;exception{" "}
+                  <span className="font-medium text-[#1b2233]">
+                    partout dans le monde
+                  </span>{" "}
+                  pour les{" "}
+                  <span className="font-medium text-[#1b2233]">
+                    professionnels de santé
+                  </span>
+                  .
+                </p>
+
+                <p>
+                  Animés par des experts certifiés, nos séminaires allient apprentissage,
+                  développement professionnel et plaisir, en{" "}
+                  <span className="font-medium text-[#1b2233]">
+                    transformant vos voyages personnels en véritables formations enrichissantes
+                  </span>
+                  .
+                </p>
+
+                <p>
+                  Nous proposons régulièrement des sessions dans les plus belles destinations,
+                  et concevons également des{" "}
+                  <span className="font-medium text-[#1b2233]">
+                    séminaires sur mesure
+                  </span>
+                  , partout dans le monde.
+                </p>
+              </div>
+
+              <div className="mt-10">
+                <Link
+                  href="/about"
+                  className="inline-flex items-center justify-center border-2 border-[#0b0f1a] px-10 py-3 text-sm font-light tracking-[0.15em] transition hover:bg-[#0b0f1a] hover:text-[#e7e2d8]"
+                >
+                  EN SAVOIR PLUS
+                </Link>
+              </div>
+            </div>
+
+            <div className="order-1 md:order-2">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm">
+                <Image src="/about.jpg" alt="Séminaire" fill className="object-cover" />
+              </div>
+            </div>
+          </div>
+          </Reveal>
+          {/* SCROLL CUE ABOUT -> SEMINARS */}
+          <div className="mt-10 flex justify-center">
+            <ScrollCue targetId="seminars" hideAfterPx={50} fadeOnScroll />
+          </div>
+        </section>
+
+        {/* SEMINARS */}
+        <section id="seminars" className="w-full scroll-mt-24 pt-24">
+          <Reveal>
+          <div className="w-full px-20">
+            <h2 className="text-5xl font-light tracking-wide md:text-5xl">Nos Séminaires</h2>
+            <p className="mt-4 text-lg text-[#1b2233]/70">
+              Découvrez notre sélection de formations d&apos;excellence
+            </p>
+
+            <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-3">
+              {seminars.map((s) => (
+                <SeminarCard
+                  key={s.slug}
+                  href={`/seminars/${s.slug}`}
+                  title={s.title}
+                  location={s.location}
+                  imageSrc={s.imageSrc}
+                  priceEUR={s.priceEUR}
+                  priceNIS={s.priceNIS}
+                />
+              ))}
+            </div>
+
+            {/* SCROLL CUE SEMINARS -> CONTACT */}
+            <div className="mt-12 flex justify-center">
+              <ScrollCue targetId="contact" hideAfterPx={50} fadeOnScroll />
+            </div>
+          </div>
+          </Reveal>
+        </section>
+
+        {/* CONTACT */}
+        <section id="contact" className="w-full scroll-mt-24 pt-24 pb-24">
+          <Reveal>
+          <div className="w-full px-20">
+            <h2 className="text-5xl font-light tracking-wide md:text-5xl">Contactez-nous</h2>
+            <p className="mt-4 text-lg text-[#1b2233]/70">
+              Une question ? Nous sommes là pour vous aider
+            </p>
+
+            <div className="mt-12 max-w-2xl">
+              <ContactForm />
+            </div>
+          </div>
+          </Reveal>
+        </section>
       </main>
     </div>
   );
