@@ -19,6 +19,7 @@ export default function Header() {
         <nav className="flex items-center gap-8 text-base md:text-lg tracking-wide text-[#4B5563]">
           <a href="/about" className="hover:opacity-60">À propos</a>
           <a href="/seminars" className="hover:opacity-60">Séminaires</a>
+          <a href="/blog" className="hover:opacity-60">Blog</a>
           <a href="/contact" className="hover:opacity-60">Contact</a>
         </nav>
 
