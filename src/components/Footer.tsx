@@ -1,37 +1,41 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
-export default function Header() {
+export default function Footer() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#e7e2d8]/90 backdrop-blur">
+    <footer className="bg-[#e7e1d6] border-t border-[#d7d0c3]">
       <div className="flex w-full items-center justify-between px-10 py-5">
-        {/* LOGO (cliquable vers la home) */}
-        <Link href="/" aria-label="Aller à l’accueil" className="relative h-12 w-48 block">
+
+        {/* LOGO */}
+        <Link href="/" className="relative h-12 w-48 block">
           <Image
             src="/logo.jpg"
             alt="GLI International"
             fill
             className="object-contain"
-            priority
           />
         </Link>
 
-        {/* NAV */}
-        <nav className="flex items-center gap-8 text-sm md:text-base tracking-wide text-[#4B5563]">
-          <Link href="/about" className="hover:opacity-60">
-            À propos
+        {/* LINKS */}
+        <div className="flex items-center gap-12 text-[#1f2a33]/70">
+          <Link className="hover:text-[#1f2a33]" href="/privacy">
+            Politique de confidentialité
           </Link>
-          <Link href="/seminars" className="hover:opacity-60">
-            Séminaires
+
+          <Link className="hover:text-[#1f2a33]" href="/legal">
+            Mentions légales
           </Link>
-          <Link href="/blog" className="hover:opacity-60">
-            Blog
+
+          <Link className="hover:text-[#1f2a33]" href="/terms">
+            CGV
           </Link>
-          <Link href="/contact" className="hover:opacity-60">
-            Contact
-          </Link>
-        </nav>
+
+          <span className="text-[#1f2a33]/50">
+            © {new Date().getFullYear()} GLI International
+          </span>
+        </div>
+
       </div>
-    </header>
+    </footer>
   );
 }
